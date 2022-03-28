@@ -1,0 +1,91 @@
+#+title: Formação Vue.js - Alura
+#+subtitle: Anotações do Curso
+
+* 02 - Adequando o Template Gerado
+
+** Interpolação
+
+Recupere  dados  do  script  para  serem visualizados  no  template  através  de
+interpolação.
+
+Segue um exemplo de componente que faça este trabalho.
+
+#+begin_src vue
+<template>
+  <div>
+    <h1>{{ titulo }}</h1>
+  </div>
+</template>
+
+<script>
+export default {
+    data: () => {
+        titulo: 'Alurapic'
+    }
+}
+</script>
+
+<style>
+</style>
+#+end_src
+
+A tag ~template~ deve ter também apenas um elemento raiz.
+
+*** Interpolação em propriedades
+
+Para  interpolar em  propriedades,  não  é possível  usar  a  sintaxe de  /curly
+braces/. O exemplo a seguir é um exemplo de erro:
+
+#+begin_src vue
+<img src="{{ foto.url }}">
+#+end_src
+
+Para recuperar os dados para propriedades de tags, use esta sintaxe:
+
+#+begin_src vue
+<img v-bind:src="foto.url">
+#+end_src
+
+A propriedade  ~v-bind~ pode ser abreviada  para uso apenas de  ~:~, da seguinte
+forma:
+
+#+begin_src vue
+<img :src="foto.url">
+#+end_src
+
+*** Uso da propriedade ~v-text~
+
+Quando o objetivo for recuperar um  texto e incluí-lo no template do componente,
+pode-se usar também a propriedade ~v-text~.
+
+Um exemplo de acordo com o início acima:
+
+#+begin_src vue
+<h1 v-text="titulo"></h1>
+#+end_src
+
+** Iteração através de ~v-for~
+
+Para iterar sobre um  array de objetos, caso seja necessário  mostrar mais de um
+elemento, usar a propriedade ~v-for~:
+
+#+begin_src vue
+<template>
+  <div>
+    <ul>
+      <li v-for="x of topics">{{ x }}</li>
+    </ul>
+  </div>
+</template>
+
+<script>
+export default {
+      data: () => {
+          return {
+              topics: ["Foo", "Bar", "Baz", "Quux"],
+          }
+      }
+}
+</script>
+#+end_src
+
